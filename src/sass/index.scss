@@ -1,2 +1,17 @@
-@import './common';
-@import './example';
+// Utils
+@import './utils/variables';
+// Base
+@import './base/base';
+@import './base/common';
+@import './base/container';
+// Components
+@import './components/button';
+@import './components/modal';
+@import './components/pagination';
+@import './components/preloading';
+// Layout
+@import './layout/header';
+@import './layout/library';
+@import './layout/gallery';
+@import './layout/footer';
+
