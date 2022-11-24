@@ -16,6 +16,41 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
+<header class="header">
+  <div class="navigation__container">
+    <a href="" class="logo">
+      <svg class="logo__svg">
+        <use href="./images/sprite.svg#icon-film"></use>
+      </svg>
+      <span class="logo__text">Filmoteka</span>
+    </a>
+    <nav class="navigation">
+      <ul class="menu list">
+        <li class="menu__item">
+          <a href="" class="menu__link">HOME</a>
+        </li>
+        <li class="menu__item">
+          <a href="" class="menu__link menu__link-library">MY LIBRARY</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <form id="search-form" action="" class="search">
+    <input class="search__input" type="text" placeholder="Movie search" />
+    <button class="search__button" type="submit" title="Go!">
+      <svg class="search__button-icon">
+        <use href="./images/sprite.svg#icon-search-2"></use>
+      </svg>
+    </button>
+  </form>
+
+
+
+  <!-- <p class="warning-notification"></p> -->
+
+</header>
+
     <!-- ❗️❗️❗️ Add partials like so for every page -->
     <include src="./partials/header.html"></include>
     <include src="./partials/gallery.html"></include>
