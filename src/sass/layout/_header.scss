@@ -1,21 +1,21 @@
 .header {
-    max-width: 480px;
+    max-width: 320px;
     @media screen and(min-width: 768px) {
             max-width: 768px;
         }
     
         @media screen and(min-width: 1200px) {
-            max-width: 1200px;
+            max-width: 1280px;
         }
     display: block;
     margin: 0 auto;
-    width: 100%;
+    max-width: 100%;
     padding: 40px 20px;
     height: 216px;
     color: white;
     background-color: #2a2a2a;
           background-image: 
-          url("../images/mobile/abstract-background-with-red-lines\ 12@.jpg");
+          url("../images/mobile/Group\ 862@-min.png");
           background-position: top;
           background-repeat: no-repeat;
           background-size: cover;
@@ -23,17 +23,15 @@
           @media screen and (min-width: 768px) and (max-width: 1199px) {
               padding: 45px 60px 20px;
               background-image: 
-                  url("../images/tablet/abstract-background-with-red-lines\ 1\ \(1\).jpg");
+                  url("../images/tablet/abstract-background-with-red-lines\ 12@-min.png");
           }
     
           @media screen and (min-width: 1200px) {
               padding-top: 40px;
               background-image: 
-                  url("../images/desktop/abstract-background-with-red-lines\ 12@.jpg");
+                  url("../images/mobile/Group\ 862@-min.png");
           }
           }
-
-
 
 
 ul {
@@ -62,6 +60,9 @@ ul {
 .logo__svg {
     width: 20px;
     height: 20px;
+    
+
+
     /* align-self: center; */
 }
 
@@ -72,6 +73,9 @@ ul {
     color: #ffffff;
     text-decoration: none;
     align-items: center;
+    @media screen and (max-width: 767px)  {
+    display: none;
+    }
 }
 
 .menu__item {
@@ -93,11 +97,11 @@ ul {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -3%;
+    bottom: -20%;
     width: 34px;
     height: 3px;
-    border-radius: 2px;
-    background-color: #FF001B;
+    border-radius: 3px;
+    background-color: #d81427;
 }
 
 .menu__link-library {
@@ -147,4 +151,33 @@ ul {
     stroke: #ffffff;
     width: 20px;
         height: 20px;
+}
+
+.rotate-vert-center {
+    -webkit-animation: rotate-vert-center 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: rotate-vert-center 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+@-webkit-keyframes rotate-vert-center {
+    100% {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
+    }
+
+    0% {
+        -webkit-transform: rotateY(360deg);
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes rotate-vert-center {
+    100% {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
+    }
+
+    0% {
+        -webkit-transform: rotateY(360deg);
+        transform: rotateY(360deg);
+    }
 }
