@@ -14,13 +14,27 @@
     height: 216px;
     color: white;
     background-color: #2a2a2a;
-    background-image: url(/src/images/mobile/abstract-background-with-red-lines\ 12@.jpg);
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
+          background-image: 
+          url("../images/mobile/abstract-background-with-red-lines\ 12@.jpg");
+          background-position: top;
+          background-repeat: no-repeat;
+          background-size: cover;
+    
+          @media screen and (min-width: 768px) and (max-width: 1199px) {
+              padding: 45px 60px 20px;
+              background-image: 
+                  url("../images/tablet/abstract-background-with-red-lines\ 1\ \(1\).jpg");
+          }
+    
+          @media screen and (min-width: 1200px) {
+              padding-top: 40px;
+              background-image: 
+                  url("../images/desktop/abstract-background-with-red-lines\ 12@.jpg");
+          }
+          }
 
 
-}
+
 
 ul {
     list-style-type: none;
@@ -72,6 +86,18 @@ ul {
     line-height: 1.16;
     color: #ffffff;
     text-decoration: none;
+}
+
+
+.menu__link.current::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3%;
+    width: 34px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: #FF001B;
 }
 
 .menu__link-library {
