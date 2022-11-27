@@ -1,39 +1,62 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import {
-  getTrendingMovies,
-  getMoVieById,
-  getSearchMovie,
-} from './servises/api';
 import refs from './servises/refs';
-import { renderMoviesMarkup } from './components/movie-markup';
-import { toggleLoader } from './servises/loader';
+import PaginationServiсe from './servises/pagination';
 
-let searcQuery = null;
+const pagination = new PaginationServiсe();
+pagination.renderMoviesByPage();
 
-const renderTrendingMovies = async () => {
-  toggleLoader();
-  const { page, results, total_pages } = await getTrendingMovies();
-  renderMoviesMarkup(results);
-  toggleLoader();
-};
-
-const onSearchMoviesByQuery = async e => {
+const onSearchMoviesByQuery = e => {
   e.preventDefault();
 
   const value = e.currentTarget.elements.query.value.trim();
 
   if (!value) return Notify.failure('Enter your search query');
+  if (value === pagination.searchQuery) return;
 
-  if (value === searcQuery) return;
-  toggleLoader();
-
-  searcQuery = value;
-
-  const { page, results, total_pages } = await getSearchMovie(value);
-
-  renderMoviesMarkup(results);
-  toggleLoader();
+  pagination.renderMoviesByPage(value);
 };
 
-renderTrendingMovies();
+refs.logo.addEventListener('click', e => {
+  e.preventDefault();
+  if (pagination.page === 1 && pagination.isTrandingMovies) return;
+
+  pagination.renderMoviesByPage();
+});
+
+const onRenderMoviesByClickBtn = e => {
+  if (e.target.tagName !== 'BUTTON') return;
+  const btn = e.target;
+
+  if (btn.dataset.firstPage === '1' && pagination.page !== 1) {
+    pagination.page === 1;
+    pagination.renderMoviesByPage();
+    return;
+  }
+
+  if (btn.dataset.lastPage) {
+    pagination.page = btn.dataset.lastPage;
+    pagination.renderMoviesByPage();
+    return;
+  }
+
+  if (btn.dataset.page === 'prev' && pagination.page !== 1) {
+    pagination.page = +pagination.page - 1;
+    pagination.renderMoviesByPage();
+    return;
+  }
+
+  if (btn.dataset.page === 'next' && pagination.page < pagination.totalPage) {
+    pagination.page = +pagination.page + 1;
+    pagination.renderMoviesByPage();
+    return;
+  }
+
+  pagination.page = btn.dataset.page;
+  pagination.renderMoviesByPage();
+};
+
 refs.searchForm.addEventListener('submit', onSearchMoviesByQuery);
+
+refs.paginationList.addEventListener('click', onRenderMoviesByClickBtn);
+
+export { onSearchMoviesByQuery };
