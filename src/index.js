@@ -5,3 +5,4 @@ import './js/servises/genres';
 import './js/api-search-movie';
 
 import './js/modal'
+
