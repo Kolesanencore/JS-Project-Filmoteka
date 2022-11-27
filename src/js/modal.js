@@ -4,13 +4,13 @@ import {
   BASE_URL_IMG,
   FILE_SIZE,
   ALL_GENRES_KEY_LS,
-} from './constants.js';
+} from './servises/constants';
 import {
   getTrendingMovies,
   getAllGenresMovie,
   getMoVieById,
   getSearchMovie,
-} from './api.js';
+} from './servises/api';
 
 const modalEl = document.querySelector('.modal');
 const btnOpenEl = document.querySelector('.gallery-list');
