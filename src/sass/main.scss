@@ -1,10 +1,13 @@
 // Utils
 @import './utils/variables';
 // Base
-@import './base/base';
 @import './base/common';
+@import './base/base';
 @import './base/container';
+
 // Components
+@import './layout/loader';
+@import './layout/movies';
 @import './components/button';
 @import './components/modal';
 @import './components/pagination';
@@ -14,4 +17,3 @@
 @import './layout/library';
 @import './layout/gallery';
 @import './layout/footer';
-

@@ -1,15 +1,49 @@
 .button {
-    display: block; 
+  display: block; 
 
-    padding: 14px 0 12px;
+  padding: 14px 12px;
 
-    box-sizing: border-box;
+  box-sizing: border-box;
 
-    outline: none;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.33;
+  outline: none;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
 
-    text-transform: uppercase;
-    text-align: center;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(255, 107, 1, 0.5), inset 0 1px rgba(255, 255, 255, 0.3),
+  inset 0 10px rgba(255, 255, 255, 0.2), inset 0 10px 20px rgba(255, 255, 255, 0.25),
+  inset 0 -15px 30px rgba(255, 107, 1, 0.3);
+}
+
+.button:hover,
+.button:focus-visible,
+.button:active {
+  background-color: var(--button-color);
+  color: var(--button-text-color);
+  box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+  transition: .5s;
+}
+
+.button-active {
+  background: var(--button-color);
+  border: var(--button-color);
+
+  border-radius: 5px;
+  color: var(--button-text-color);
+}
+
+.no-active {
+  background-color: transparent;
+
+  border-radius: 5px;
+  border: 1px solid var(--button-text-color);
+}
+
+.btn-lib {
+  margin-left: 20px;
+  min-width: 130px;
+  
+  color: var(--button-text-color);
 }
