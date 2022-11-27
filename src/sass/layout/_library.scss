@@ -6,18 +6,18 @@
   height: 216px;
   color: white;
   background-color: #2a2a2a;
-  background-image: url('../images/mobile/Rectangle\ 12@-min.png');
-  background-position: top;
-  background-repeat: no-repeat;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(47, 48, 58, 0.4)), url('../images/mobile/Rectangle\ 12@-min.png');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: 100%;
 
   @media screen and (min-width: 768px) and (max-width: 1199px) {
-    background-image: url('../images/tablet/Rectangle\ 12@-min.png');
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(47, 48, 58, 0.4)), url('../images/tablet/Rectangle\ 12@-min.png');
   }
 
   @media screen and (min-width: 1280px) {
     padding-top: 40px;
-    background-image: url('../images/desctop/Rectangle\ 12@-min.png');
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(47, 48, 58, 0.4)), url('../images/desctop/Rectangle\ 12@-min.png');
   }
 }
 

@@ -53,10 +53,11 @@
 }
 
 .pagination__button {
-  background-color: #F7F7F7;
+box-shadow: 0 2px 8px #ff6b0180, inset 0 1px #ffffff4d, inset 0 10px #fff3, inset 0 10px 20px #ffffff40, inset 0 -15px 30px #ff6b014d;
   cursor: pointer;
   border: none;
   border-radius: 9px;
+  background-color: transparent;
 }
 
 .pagination__item > button:hover, 
