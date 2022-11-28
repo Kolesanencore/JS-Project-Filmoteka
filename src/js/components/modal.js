@@ -11,6 +11,7 @@ import {
   getAllGenresMovie,
   getMoVieById,
   getSearchMovie,
+  takeGenresMovie,
 } from '../servises/api.js';
 
 const modalEl = document.querySelector('.modal');
@@ -35,15 +36,23 @@ const renderMarkup = object => {
     vote_average,
     vote_count,
     original_title,
-    genre_ids,
+    genres,
     overview,
+    popularity,
   } = object;
+  const genreMovies = genres.map(el => el.name);
+
   return `
       <div class="modal-content__img">
-        <img src="https://image.tmdb.org/t/p//w500${poster_path}" alt="image" />
+        <img src="${BASE_URL_IMG}/${FILE_SIZE}${poster_path}" alt="image" />
       </div>
       <div class="modal-content__right-side">
         <h2 class="modal-content__title">${title}</h2>
+        <p class="trailer-btn">
+        <svg class="play-svg" width="24" height="24">
+          <use href="../../images/SVG/sprite.svg#icon-play3"></use>
+        </svg>
+        Play Trailer</p>
         <ul class="modal-content__items">
         <li class="modal-content__item">
         <p class="film-details">Vote / Votes</p>
@@ -55,7 +64,7 @@ const renderMarkup = object => {
       </li>
       <li class="modal-content__item">
       <p class="film-details">Popularity</p>
-      <p class="film-details__info--number"></p>
+      <p class="film-details__info--number">${popularity}</p>
           </li>
           <li class="modal-content__item">
           <p class="film-details">Original Title</p>
@@ -63,7 +72,7 @@ const renderMarkup = object => {
           </li>
           <li class="modal-content__item">
             <p class="film-details">Genre</p>
-            <p class="film-details__info">${genre_ids}</p>
+            <p class="film-details__info">${genreMovies}</p>
             </li>
             </ul>
         <h3 class="modal-content__about">About</h3>
@@ -80,9 +89,10 @@ const renderMarkup = object => {
 
 async function openModal() {
   modalEl.classList.add('modal-show');
+  document.body.classList.add('stop-scrolling');
 
   const btnClose = document.querySelector('.modal-content__btn-close');
-  console.log(btnClose);
+
   btnClose.addEventListener('click', () => closeModal());
   modalEl.addEventListener('click', e => {
     console.log(e.target.classList);
@@ -105,6 +115,7 @@ btnOpenEl.addEventListener('click', e => {
 // Закриття модалки
 function closeModal() {
   modalEl.classList.remove('modal-show');
+  document.body.classList.remove('stop-scrolling');
   document.body.style.overflow = '';
   window.removeEventListener('keydown', modalClosinByEsc);
 }
