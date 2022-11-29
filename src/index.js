@@ -4,7 +4,8 @@ import './js/servises/genres';
 
 import './js/api-search-movie';
 
-import './js/modal'
+import './js/components/modal.js';
+
+import './js/components/trailers.js';
 
 import './js/servises/header';
-
