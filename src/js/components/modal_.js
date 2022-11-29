@@ -4,25 +4,22 @@ import {
   BASE_URL_IMG,
   FILE_SIZE,
   ALL_GENRES_KEY_LS,
-} from '../servises/constants.js';
-// } from './servises/constants';
-
+} from './servises/constants';
 import {
-  fetchMovie,
   getTrendingMovies,
   getAllGenresMovie,
   getMoVieById,
   getSearchMovie,
-  takeGenresMovie,
-} from '../servises/api.js';
-// } from './servises/api';
+} from './servises/api';
 
-//-add----------***
-// import storage from './servises/localStorage';
-import storage from '../servises/localStorage';
+import storage from './servises/localStorage';
 
 const WEB_LOCAL_WATCHED = 'watched-list-movie';
 const WEB_LOCAL_QUEUE = 'queue-list-movie';
+
+const modalEl = document.querySelector('.modal');
+const btnOpenEl = document.querySelector('.gallery-list');
+const backdropEL = document.querySelector('.modal__backdrop');
 
 function createObj(data) {
   const {
@@ -45,95 +42,79 @@ function createObj(data) {
     releaseDate: new Date(release_date).getFullYear(),
   };
 }
+
 const preparationGenres = array =>
   array
     .map(({ name }) => name)
     .slice(0, 2)
     .join(', ');
-//--------------***
-
-const modalEl = document.querySelector('.modal');
-const btnOpenEl = document.querySelector('.gallery-list');
-const modalMovieSidesEl = document.querySelector('.modal-content__sides');
-
-function fetchMovies(id) {
-  return fetch(id).then(response =>
-    response.status === 404
-      ? Promise.reject(
-          new Error('The resource you requested could not be found.')
-        )
-      : response.json()
-  );
-}
-
-const renderMarkup = object => {
-  const {
-    poster_path,
-    id,
-    title,
-    vote_average,
-    vote_count,
-    original_title,
-    genres,
-    overview,
-    popularity,
-  } = object;
-  const genreMovies = genres.map(el => el.name);
-
-  return `
-      <div class="modal-content__img">
-        <img src="${BASE_URL_IMG}/${FILE_SIZE}${poster_path}" alt="image" />
-      </div>
-      <div class="modal-content__right-side">
-        <h2 class="modal-content__title">${title}</h2>
-        <p class="trailer-btn">
-        <svg class="play-svg" width="24" height="24">
-          <use href="../../images/SVG/sprite.svg#icon-play3"></use>
-        </svg>
-        Play Trailer</p>
-        <ul class="modal-content__items">
-        <li class="modal-content__item">
-        <p class="film-details">Vote / Votes</p>
-        <p class="film-details__info--number"> 
-        <sp class="film-details__rating--orange">${vote_average}</sp>
-        <sp class="film-details__rating"> / </sp>
-        <sp>${vote_count}</sp>
-      </p>
-      </li>
-      <li class="modal-content__item">
-      <p class="film-details">Popularity</p>
-      <p class="film-details__info--number">${popularity}</p>
-          </li>
-          <li class="modal-content__item">
-          <p class="film-details">Original Title</p>
-          <p class="film-details__info">${original_title}</p>
-          </li>
-          <li class="modal-content__item">
-            <p class="film-details">Genre</p>
-            <p class="film-details__info">${genreMovies}</p>
-            </li>
-            </ul>
-        <h3 class="modal-content__about">About</h3>
-        <p class="modal-content__description">${overview}</p>
-        <div class="modal-content__buttons">
-          <button type="button" class="modal-content__btn  btn-watch">
-            ADD TO WATCHED
-          </button>
-          <button type="button" class="modal-content__btn btn-queue">ADD TO QUEUE</button>
-        </div>
-      </div>
-    `;
-};
 
 async function openModal() {
-  modalEl.classList.add('modal-show');
-  document.body.classList.add('stop-scrolling');
+  // getMoVieById({
+  //   poster_path,
+  //   id,
+  //   title,
+  //   vote_average,
+  //   vote_count,
+  //   original_title,
+  //   genre_ids,
+  //   overview,
+  // });
 
+  modalEl.classList.add('modal-show');
+
+  modalEl.innerHTML = `
+      <div >
+      <div class="modal__backdrop"></div>
+    <div class="modal-content">
+    <button type="button"  class="modal-content__btn-close">
+    <span >x</span>
+  </button>
+      <div class="modal-content__sides">
+        <div class="modal-content__img">
+          <img src="="#" " alt="image" />
+        </div>
+        <div class="modal-content__right-side">
+          <h2 class="modal-content__title"></h2>
+          <ul class="modal-content__items">
+          <li class="modal-content__item">
+          <p class="film-details">Vote / Votes</p>
+          <p class="film-details__info--number"> 
+          <sp class="film-details__rating--orange"></sp>
+          <sp class="film-details__rating"> / </sp>
+          <sp></</sp>
+        </p>
+        </li>
+        <li class="modal-content__item">
+        <p class="film-details">Popularity</p>
+        <p class="film-details__info--number"></p>
+            </li>
+            <li class="modal-content__item">
+            <p class="film-details">Original Title</p>
+            <p class="film-details__info"></p>
+            </li>
+            <li class="modal-content__item">
+              <p class="film-details">Genre</p>
+              <p class="film-details__info"></p>
+              </li>
+              </ul>
+          <h3 class="modal-content__about">About</h3>
+          <p class="modal-content__description"></p>
+          <div class="modal-content__buttons">
+            <button type="button" class="modal-content__btn  btn-watch">
+              ADD TO WATCHED
+            </button>
+            <button type="button" class="modal-content__btn btn-queue">ADD TO QUEUE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      `;
   const btnClose = document.querySelector('.modal-content__btn-close');
 
   btnClose.addEventListener('click', () => closeModal());
   modalEl.addEventListener('click', e => {
-    //console.log(e.target.classList);
     if (e.target.classList.contains('modal__backdrop')) closeModal();
   });
   window.addEventListener('keydown', modalClosinByEsc);
@@ -144,21 +125,16 @@ btnOpenEl.addEventListener('click', e => {
   openModal();
   const id = e.target.closest('li').dataset.id;
   getMoVieById(id).then(data => {
-    const markup = renderMarkup(data);
-    //console.log(markup);
-    modalMovieSidesEl.innerHTML = markup;
-    //---add-----------***
+    //render
     const newData = createObj(data);
     addEventsOnBtnToLs(newData);
     textModalBtn(newData);
-    //-----------------***
   });
 });
 
 // Закриття модалки
 function closeModal() {
   modalEl.classList.remove('modal-show');
-  document.body.classList.remove('stop-scrolling');
   document.body.style.overflow = '';
   window.removeEventListener('keydown', modalClosinByEsc);
 }
@@ -168,7 +144,9 @@ function modalClosinByEsc(event) {
     closeModal();
   }
 }
-//------------watched, queue handlers-----------------------------
+
+//------------watched queue handlers-----------------------------
+
 async function textModalBtn(obj) {
   const btnQueue = document.querySelector('.btn-queue');
   const btnWatch = document.querySelector('.btn-watch');
@@ -220,8 +198,8 @@ function addEventsOnBtnToLs(obj) {
 // const isUniqDataInSet = (uniqSet, data) =>
 //   [...uniqSet].some(({ id }) => data.id === id);
 
-function isUniqDataInSet(uniqSet, data) {
-  return [...uniqSet].some(({ id }) => data.id === id);
+function isUniqDataInSet(uniqSet, data){
+  return  [...uniqSet].some(({ id }) => data.id === id);
 }
 
 function addWatchList(obj) {
@@ -234,7 +212,7 @@ function addWatchList(obj) {
 
     let queueSet = [...new Set(queueList)];
     if (isUniqDataInSet(queueSet, obj)) {
-      storage.deleteArrayItemFromStorage(WEB_LOCAL_QUEUE, obj.id);
+       storage.deleteArrayItemFromStorage(WEB_LOCAL_QUEUE, obj.id);
     }
 
     const watchSet = new Set(watchList);
@@ -264,11 +242,13 @@ function addQueueList(obj) {
   if (btnQueue.classList.contains('active')) {
     removeFromQueueList(obj);
   } else {
+   
     let watchList = storage.get(WEB_LOCAL_WATCHED) || [];
     let queueList = storage.get(WEB_LOCAL_QUEUE) || [];
 
     let watchSet = new Set(watchList);
     if (isUniqDataInSet(watchSet, obj)) {
+      
       storage.deleteArrayItemFromStorage(WEB_LOCAL_WATCHED, obj.id);
     }
 
@@ -276,6 +256,7 @@ function addQueueList(obj) {
     if (isUniqDataInSet(queueSet, obj)) {
       textModalBtn(obj);
     } else {
+      
       storage.saveArrayItemToStorage(WEB_LOCAL_QUEUE, obj);
       textModalBtn(obj);
     }
@@ -283,6 +264,7 @@ function addQueueList(obj) {
 }
 
 function inList(obj, list) {
+  
   let arrList = storage.get(list) || [];
   return isUniqDataInSet([...new Set(arrList)], obj);
 }
