@@ -40,7 +40,7 @@ const getMoVieById = id => {
   return fetchMovie(url);
 };
 
-const getSearchMovie = (searhQuery = '', currentPage = 1) => {
+const getSearchMovie = (currentPage = 1, searhQuery = '') => {
   const searchParams = new URLSearchParams({
     api_key: API_KEY,
     language: 'en-US',

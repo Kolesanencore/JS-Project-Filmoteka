@@ -1,35 +1,28 @@
-<div class="container">
+<div class="container movies__wrapper">
   <ul class="gallery-list list"></ul>
-</div>
-
-<div class="pagination">
-  <button id="pg-button-prev" type="button" class="pagination__button">
-     <svg class="arrow-left" width="16" height="16">
-      <use href="./images/sprite.svg#icon-arrow-left"></use>
+  <div class="pagination js-pagination">
+    <button
+      id="pg-button-prev"
+      type="button"
+      class="pagination__button"
+      data-page="prev"
+    >
+      <svg class="arrow-left" width="16" height="16">
+        <use href="./images/sprite.svg#icon-arrow-left"></use>
       </svg>
-  </button>
+    </button>
 
-  <ul class="pagination__list">
-    <li class="pagination__item pagination__item--1">
-      <button id="pg-button-1" type="button">1</button>
-    </li>
-    <li class="pagination__item pagination__item--2">
-      <button id="pg-button-2" type="button">2</button>
-    </li>
-    <li class="pagination__item pagination__item--3">
-      <button id="pg-button-3" type="button">3</button>
-    </li>
-    <li class="pagination__item pagination__item--4">
-      <button id="pg-button-4" type="button">4</button>
-    </li>
-    <li class="pagination__item pagination__item--5">
-      <button id="pg-button-5" type="button">5</button>
-    </li>
-  </ul>
+    <ul class="pagination__list"></ul>
 
-  <button id="pg-button-next" type="button" class="pagination__button">
+    <button
+      id="pg-button-next"
+      type="button"
+      class="pagination__button"
+      data-page="next"
+    >
       <svg class="arrow-right" width="16" height="16">
-      <use href="./images/sprite.svg#icon-arrow-right"></use>
+        <use href="./images/sprite.svg#icon-arrow-right"></use>
       </svg>
-  </button>
+    </button>
+  </div>
 </div>

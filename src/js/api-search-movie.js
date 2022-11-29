@@ -1,39 +1,67 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import {
-  getTrendingMovies,
-  getMoVieById,
-  getSearchMovie,
-} from './servises/api';
 import refs from './servises/refs';
-import { renderMoviesMarkup } from './components/movie-markup';
-import { toggleLoader } from './servises/loader';
+import PaginationServiсe from './servises/pagination';
+import throttle from 'lodash.throttle';
 
-let searcQuery = null;
+const pagination = new PaginationServiсe();
 
-const renderTrendingMovies = async () => {
-  toggleLoader();
-  const { page, results, total_pages } = await getTrendingMovies();
-  renderMoviesMarkup(results);
-  toggleLoader();
+window.addEventListener(
+  'resize',
+  throttle(e => {
+    if (window.innerWidth < 768) {
+      pagination.renderNumberPag(pagination.page, pagination.totalPage);
+    }
+  }, 250)
+);
+
+pagination.renderMoviesByPage();
+
+const resetForTrandingMovies = () => {
+  refs.searchForm.elements.query.value = '';
+  pagination.page = 1;
+  pagination.searchQuery = null;
 };
 
-const onSearchMoviesByQuery = async e => {
+const renderMoviesByChangePage = page => {
+  if (page === pagination.page) return;
+  pagination.changePage(page);
+  pagination.renderMoviesByPage();
+};
+
+const onChangePageAndRendereMovies = e => {
+  const page = +e.target.dataset.page;
+
+  page &&
+    page <= pagination.totalPage &&
+    page !== pagination.page &&
+    renderMoviesByChangePage(page);
+};
+
+const onSearchMoviesByQuery = e => {
   e.preventDefault();
 
   const value = e.currentTarget.elements.query.value.trim();
-
   if (!value) return Notify.failure('Enter your search query');
 
-  if (value === searcQuery) return;
-  toggleLoader();
-
-  searcQuery = value;
-
-  const { page, results, total_pages } = await getSearchMovie(value);
-
-  renderMoviesMarkup(results);
-  toggleLoader();
+  value !== pagination.searchQuery && pagination.renderMoviesByPage(value);
 };
 
-renderTrendingMovies();
+refs.logo.addEventListener('click', e => {
+  e.preventDefault();
+  if (pagination.page === 1 && pagination.isTrandingMovies) return;
+
+  resetForTrandingMovies();
+  pagination.renderMoviesByPage();
+});
+
 refs.searchForm.addEventListener('submit', onSearchMoviesByQuery);
+
+refs.prevBtnPAgination.addEventListener('click', () =>
+  renderMoviesByChangePage(pagination.page - 1)
+);
+refs.nextBtnPAgination.addEventListener('click', () =>
+  renderMoviesByChangePage(pagination.page + 1)
+);
+refs.paginationList.addEventListener('click', onChangePageAndRendereMovies);
+
+export { onSearchMoviesByQuery };

@@ -1,3 +1,11 @@
 .movies {
   padding-top: 60px;
 }
+
+.movies.movies--no-result {
+  padding-top: 0;
+}
+
+.movies.movies--no-result-one-page {
+  padding-bottom: 60px;
+}
