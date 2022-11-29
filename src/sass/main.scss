@@ -4,19 +4,15 @@
 @import './base/common';
 @import './base/base';
 @import './base/container';
+
 // Components
 @import './layout/movies';
 @import './components/noresult';
 @import './layout/loader';
 @import './components/button';
 @import './components/modal';
-@import './components/modal_footer';
 @import './components/pagination';
 @import './components/preloading';
-
-@import 'node_modules/@glidejs/glide/src/assets/sass/glide.core';
-@import 'node_modules/@glidejs/glide/src/assets/sass/glide.theme';
-
 // Layout
 @import './layout/header';
 @import './layout/library';
