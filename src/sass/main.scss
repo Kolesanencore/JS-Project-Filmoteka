@@ -6,8 +6,9 @@
 @import './base/container';
 
 // Components
-@import './layout/loader';
 @import './layout/movies';
+@import './components/noresult';
+@import './layout/loader';
 @import './components/button';
 @import './components/modal';
 @import './components/pagination';
