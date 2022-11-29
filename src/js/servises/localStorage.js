@@ -34,4 +34,10 @@ const deleteArrayItemFromStorage = (key, id) => {
   save(key, storageData);
 };
 
-export default { get, save, remove, saveArrayItemToStorage, deleteArrayItemFromStorage };
+export default {
+  get,
+  save,
+  remove,
+  saveArrayItemToStorage,
+  deleteArrayItemFromStorage,
+};

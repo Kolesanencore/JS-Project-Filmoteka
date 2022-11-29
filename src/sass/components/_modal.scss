@@ -16,6 +16,10 @@
   display: flex;
   pointer-events: initial;
 }
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
 .modal__backdrop {
   position: absolute;
   top: 0;
@@ -94,18 +98,16 @@
   margin-left: auto;
   display: block;
 
-  max-width: 240px;
-  height: 356px;
+  width: 280px;
+
   border-radius: 5px;
   margin-bottom: 30px;
 
-  @media screen and (min-width: 768px) and (max-width: 1200px) {
-    max-width: 264px;
-    height: 373.55px;
+  @media screen and (min-width: 768px) {
+    min-width: 294px;
   }
-  @media screen and (min-width: 1200px) {
-    max-width: 396px;
-    height: 477.8px;
+  @media screen and (min-width: 1024px) {
+    width: 426px;
   }
 }
 .modal-content__right-side {
@@ -119,6 +121,32 @@
   @media screen and (min-width: 1200px) {
     font-size: 30px;
     line-height: 1.17;
+  }
+}
+
+.trailer-btn {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 20px;
+  border: none;
+  background: transparent;
+  width: auto;
+  height: auto;
+  font-weight: 600;
+  will-change: opacity;
+  transition: linear 0.1s;
+
+  &:hover {
+    cursor: pointer;
+    font-size: 21px;
+    color: #ff6b01;
+
+    // & .play-svg {
+    //   fill: #ff6b01;
+    //   width: 25px;
+    //   height: 25px;
+    // }
   }
 }
 .modal-content__item {
@@ -166,7 +194,7 @@
   border: 1px solid #000000;
 
   &:hover,
-  &:focus {
+  &.active {
     background-color: #ff6b08;
     color: #ffffff;
     border: 1px solid #ff6b08;
@@ -181,4 +209,15 @@
 }
 .modal-content__btn:first-child {
   margin-right: 15px;
+}
+.modal-trailer{
+  position: absolute;
+  z-index: 3;
+top: 10vh;
+left: 10vw;
+}
+.close-trailer{
+  position: absolute ;
+  top: 0;
+  right: 0;
 }

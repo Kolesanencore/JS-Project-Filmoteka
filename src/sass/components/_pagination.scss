@@ -1,14 +1,17 @@
 .pagination {
-  width: 400px;
-  height: 60px;
+  display: block;
+  min-width: 280px;
   border-radius: 9px;
-
   margin: auto;
-
+  padding-top: 60px;
   padding-bottom: 60px;
 }
 
-.pagination, 
+.pagination.pagination--no-result {
+  display: none;
+}
+
+.pagination,
 .pagination__list {
   display: flex;
   flex-direction: row;
@@ -39,32 +42,51 @@
   align-items: center;
   justify-content: center;
   align-content: center;
-  font-size: 1.1rem;
   font-size: 12px;
+  line-height: 1.33;
+  font-weight: 500;
+}
+
+.pagination__item--dote {
+  width: 15px;
+}
+
+.pagination__item > .pagination__button--dote {
+  cursor: default;
 }
 
 .pagination__item > button {
   border: none;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   box-shadow: none;
   cursor: pointer;
   border-radius: 9px;
   background: none;
 }
 
+.pagination__item > .pagination__button--active {
+  background: #ff6b08;
+  color: #ffff;
+  box-shadow: 0 2px 8px #ff6b0180, inset 0 1px #ffffff4d, inset 0 10px #fff3,
+    inset 0 10px 20px #ffffff40, inset 0 -15px 30px #ff6b014d;
+}
+
 .pagination__button {
-box-shadow: 0 2px 8px #ff6b0180, inset 0 1px #ffffff4d, inset 0 10px #fff3, inset 0 10px 20px #ffffff40, inset 0 -15px 30px #ff6b014d;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 8px #ff6b0180, inset 0 1px #ffffff4d, inset 0 10px #fff3,
+    inset 0 10px 20px #ffffff40, inset 0 -15px 30px #ff6b014d;
   cursor: pointer;
   border: none;
   border-radius: 9px;
   background-color: transparent;
 }
 
-.pagination__item > button:hover, 
+.pagination__item > button:not(.pagination__button--dote):hover,
 .pagination__button:hover {
-  background: #FF6B08;
+  background: #ff6b08;
   color: #ffff;
-  box-shadow: 0 2px 8px #ff6b0180, inset 0 1px #ffffff4d, inset 0 10px #fff3, inset 0 10px 20px #ffffff40, inset 0 -15px 30px #ff6b014d;
+  box-shadow: 0 2px 8px #ff6b0180, inset 0 1px #ffffff4d, inset 0 10px #fff3,
+    inset 0 10px 20px #ffffff40, inset 0 -15px 30px #ff6b014d;
 }
 
 .pagination__item > button {
@@ -72,86 +94,98 @@ box-shadow: 0 2px 8px #ff6b0180, inset 0 1px #ffffff4d, inset 0 10px #fff3, inse
   height: 45px;
 }
 
-.pagination__item > button[data-level=target] {
-  background: #FF6B08;
+.pagination__item > button[data-level='target'] {
+  background: #ff6b08;
   color: #ffff;
 }
 
-.pagination--move-prev, 
+.pagination--move-prev,
 .pagination--move-top,
 .pagination--move-next {
   animation: pagination-move-prev 0.5s ease both;
 }
 
 .pagination__button {
-width: 40px;
-height: 40px;
+  width: 40px;
+  height: 40px;
 }
 
 @-webkit-keyframes pagination-move-prev {
-  from, 0% {
+  from,
+  0% {
     transform: translateX(25px);
   }
   50% {
     transform: translateX(-5px);
   }
-  to, 100% {
+  to,
+  100% {
     transform: translateX(0px);
   }
 }
 
 @keyframes pagination-move-prev {
-  from, 0% {
+  from,
+  0% {
     transform: translateX(25px);
   }
   50% {
     transform: translateX(-5px);
   }
-  to, 100% {
+  to,
+  100% {
     transform: translateX(0px);
   }
 }
 @-webkit-keyframes pagination-move-next {
-  from, 0% {
+  from,
+  0% {
     transform: translateX(-25px);
   }
   50% {
     transform: translateX(5px);
   }
-  to, 100% {
+  to,
+  100% {
     transform: translateX(0px);
   }
 }
 @keyframes pagination-move-next {
-  from, 0% {
+  from,
+  0% {
     transform: translateX(-25px);
   }
   50% {
     transform: translateX(5px);
   }
-  to, 100% {
+  to,
+  100% {
     transform: translateX(0px);
   }
 }
 @-webkit-keyframes pagination-move-top {
-  from, 0% {
+  from,
+  0% {
     transform: translateY(-25px);
   }
   50% {
     transform: translateY(10px);
   }
-  to, 100% {
+  to,
+  100% {
     transform: translateY(0px);
   }
 }
 @keyframes pagination-move-top {
-  from, 0% {
+  from,
+  0% {
     transform: translateY(-25px);
   }
   50% {
     transform: translateY(10px);
   }
-  to, 100% {
+  to,
+  100% {
     transform: translateY(0px);
   }
 }
