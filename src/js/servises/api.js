@@ -52,14 +52,20 @@ const getSearchMovie = (currentPage = 1, searhQuery = '') => {
   return fetchMovie(url);
 };
 
-// const getMoVieVideoTrailerById = id => {
-//   const searchParams = new URLSearchParams({
-//     api_key: API_KEY,
-//     language: 'en-US',
-//   });
+const getMoVieVideoTrailerById = id => {
+  const searchParams = new URLSearchParams({
+    api_key: API_KEY,
+    language: 'en-US',
+  });
 
-//   const url = `${BASE_URL_API}/movie/${id}/videos?${searchParams}`;
-//   return fetchMovie(url);
-// };
+  const url = `${BASE_URL_API}/movie/${id}/videos?${searchParams}`;
+  return fetchMovie(url);
+};
 
-export { getTrendingMovies, getAllGenresMovie, getMoVieById, getSearchMovie };
+export {
+  getTrendingMovies,
+  getAllGenresMovie,
+  getMoVieById,
+  getSearchMovie,
+  getMoVieVideoTrailerById,
+};
