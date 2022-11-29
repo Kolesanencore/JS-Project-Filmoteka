@@ -16,7 +16,7 @@ import {
   takeGenresMovie,
 } from '../servises/api.js';
 // } from './servises/api';
-
+import trailers from './trailers';
 //-add----------***
 // import storage from './servises/localStorage';
 import storage from '../servises/localStorage';
@@ -86,11 +86,22 @@ const renderMarkup = object => {
       </div>
       <div class="modal-content__right-side">
         <h2 class="modal-content__title">${title}</h2>
+        <div class = "trailer">
         <p class="trailer-btn">
-        <svg class="play-svg" width="24" height="24">
-          <use href="../../images/SVG/sprite.svg#icon-play3"></use>
+        <svg class="play-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="45" height="45" viewBox="0 0 256 256" xml:space="preserve">
+        <defs>
+        </defs>
+        <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+          <path d="M 45 77.4 c -2.729 0 -26.857 -0.052 -33.595 -1.858 c -4.646 -1.241 -8.305 -4.9 -9.548 -9.55 C 0.021 59.142 0 45.574 0 45 s 0.021 -14.142 1.857 -20.994 c 1.243 -4.646 4.902 -8.306 9.55 -9.548 C 18.143 12.652 42.271 12.6 45 12.6 c 2.729 0 26.857 0.052 33.594 1.857 c 4.647 1.243 8.307 4.902 9.549 9.55 C 89.979 30.861 90 44.426 90 45 s -0.021 14.142 -1.858 20.994 c -1.241 4.646 -4.901 8.307 -9.55 9.549 C 71.857 77.349 47.729 77.4 45 77.4 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+          <path d="M 36.758 58.972 l 21.794 -12.584 c 1.069 -0.617 1.069 -2.16 0 -2.777 L 36.758 31.028 c -1.069 -0.617 -2.405 0.154 -2.405 1.388 v 25.168 C 34.353 58.818 35.689 59.589 36.758 58.972 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+          <path d="M 88.143 24.008 c -1.242 -4.648 -4.901 -8.308 -9.549 -9.55 c -0.111 -0.03 -0.239 -0.058 -0.36 -0.087 C 79.978 21.327 80 34.436 80 35 c 0 0.574 -0.021 14.142 -1.858 20.994 c -1.241 4.646 -4.901 8.307 -9.55 9.549 C 61.857 67.349 37.729 67.4 35 67.4 c -2.684 0 -26.054 -0.051 -33.235 -1.772 c 0.03 0.122 0.06 0.246 0.092 0.363 c 1.243 4.649 4.902 8.309 9.548 9.55 C 18.143 77.349 42.271 77.4 45 77.4 c 2.729 0 26.857 -0.052 33.592 -1.857 c 4.648 -1.242 8.309 -4.902 9.55 -9.549 C 89.979 59.142 90 45.574 90 45 S 89.979 30.861 88.143 24.008 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(224,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+          <path d="M 58.552 43.612 l -3.23 -1.865 c 0.098 0.618 -0.151 1.285 -0.77 1.642 L 34.353 55.051 v 2.533 c 0 1.234 1.336 2.005 2.405 1.388 l 21.794 -12.584 C 59.62 45.771 59.62 44.229 58.552 43.612 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(211,211,211); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+        </g>
         </svg>
-        Play Trailer</p>
+
+
+         Play Trailer</p>
+        </div>
         <ul class="modal-content__items">
         <li class="modal-content__item">
         <p class="film-details">Vote / Votes</p>
@@ -152,6 +163,13 @@ btnOpenEl.addEventListener('click', e => {
     addEventsOnBtnToLs(newData);
     textModalBtn(newData);
     //-----------------***
+    //---add trailer------------
+    const trailerRef = document.querySelector('.trailer');
+
+    trailerRef.addEventListener('click', () => {
+      trailers(newData.title, newData.releaseDate);
+    });
+    //--------------------
   });
 });
 

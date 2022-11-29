@@ -123,6 +123,7 @@
     line-height: 1.17;
   }
 }
+
 .trailer-btn {
   display: flex;
   align-items: center;
@@ -141,11 +142,11 @@
     font-size: 21px;
     color: #ff6b01;
 
-    & .play-svg {
-      fill: #ff6b01;
-      width: 25px;
-      height: 25px;
-    }
+    // & .play-svg {
+    //   fill: #ff6b01;
+    //   width: 25px;
+    //   height: 25px;
+    // }
   }
 }
 .modal-content__item {
@@ -208,4 +209,15 @@
 }
 .modal-content__btn:first-child {
   margin-right: 15px;
+}
+.modal-trailer{
+  position: absolute;
+  z-index: 3;
+top: 10vh;
+left: 10vw;
+}
+.close-trailer{
+  position: absolute ;
+  top: 0;
+  right: 0;
 }
