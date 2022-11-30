@@ -1,8 +1,22 @@
 import storage from './localStorage';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import refs from './refs';
+import {
+  WEB_LOCAL_WATCHED,
+  WEB_LOCAL_QUEUE,
+  LIST_WATCHED,
+  LIST_QUEUE,
+} from '../servises/constants';
 import { getTrendingMovies, getSearchMovie } from '../servises/api';
-import { renderMoviesMarkup, clearGallery } from '../components/movie-markup';
+import {
+  renderMoviesMarkup,
+  clearGallery,
+  renderMoviesLibrary,
+} from '../components/movie-markup';
 import { toggleLoader } from './loader';
+
+const takeDataWatchedMovies = () => storage.get(WEB_LOCAL_WATCHED) || [];
+const takeDataQueueMovies = () => storage.get(WEB_LOCAL_QUEUE) || [];
 
 class PaginationServiсe {
   isTrandingMovies = true;
@@ -10,11 +24,29 @@ class PaginationServiсe {
   #page = 1;
   #totalPage = null;
 
+  perPage = 20;
+  currentList = null;
+
   renderMoviesByPage(query = null) {
+    if (this.currentList === LIST_WATCHED) {
+      this.isTrandingMovies = false;
+      this.searchQuery = null;
+      this.renderMoviesMyLibraryLs(takeDataWatchedMovies);
+      return;
+    }
+
+    if (this.currentList === LIST_QUEUE) {
+      this.isTrandingMovies = false;
+      this.searchQuery = null;
+      this.renderMoviesMyLibraryLs(takeDataQueueMovies);
+      return;
+    }
+
     if (!query && !this.isTrandingMovies && !this.searchQuery) {
       this.page = 1;
       this.isTrandingMovies = true;
       this.searchQuery = null;
+      this.currentList = null;
       this.renderMovies(getTrendingMovies);
       return;
     }
@@ -23,11 +55,13 @@ class PaginationServiсe {
       this.isTrandingMovies = false;
       this.page = 1;
       this.searchQuery = query;
+      this.currentList = null;
       this.renderMovies(getSearchMovie);
       return;
     }
 
     if (this.isTrandingMovies) {
+      this.currentList = null;
       this.renderMovies(getTrendingMovies);
       return;
     }
@@ -66,25 +100,57 @@ class PaginationServiсe {
       total_pages > 1 && this.renderNumberPag(page, total_pages);
     } catch (error) {
       console.log(error);
+      Notify.failure('Something went wrong');
+      clearGallery();
     }
+
     toggleLoader();
   }
 
-  // setDataMovies(page, total_pages) {
-  //   this.page = page;
-  //   this.totalPage = total_pages;
-  // }
+  renderMoviesMyLibraryLs(callcack) {
+    toggleLoader();
+
+    const dataMovies = callcack();
+
+    if (!dataMovies.length) {
+      this.resetData();
+      clearGallery();
+      toggleLoader();
+      return;
+    }
+    this.totalPage = Math.ceil(dataMovies.length / this.perPage);
+
+    if (this.totalPage < this.page || this.page <= 0) {
+      return;
+    }
+
+    const dataForRender = dataMovies.slice(
+      this.perPage * this.#page - this.perPage,
+      this.perPage * this.#page
+    );
+
+    renderMoviesLibrary(dataForRender);
+
+    if (this.totalPage === 1) {
+      refs.pagination.classList.add('pagination--no-result');
+      refs.sectionMovies.classList.add('movies--no-result-one-page');
+    } else {
+      refs.pagination.classList.remove('pagination--no-result');
+      refs.sectionMovies.classList.remove('movies--no-result-one-page');
+    }
+
+    this.totalPage > 1 && this.renderNumberPag(this.page, this.totalPage);
+    toggleLoader();
+  }
 
   renderNumberPag(currentPage, maxPage) {
     const isMobile = window.innerWidth < 768;
     let markup = [];
-    // if()
+
     if ((maxPage <= 5 && isMobile) || (maxPage <= 5 && !isMobile)) {
-      for (let i = 1; i <= this.#totalPage; i++) {
-        console.log(i);
-        markup.push(this.getBtnPaginationHtml(i, i === this.#page));
+      for (let i = 1; i <= maxPage; i++) {
+        markup.push(this.getBtnPaginationHtml(i, i === currentPage));
       }
-      console.log(markup);
       refs.paginationList.innerHTML = markup.join('');
       return;
     }
@@ -118,7 +184,7 @@ class PaginationServiсe {
       markup.push(
         this.getBtnPaginationHtml(
           currentPage - i,
-          currentPage - i === this.#page
+          currentPage - i === currentPage
         )
       );
     }
@@ -129,7 +195,7 @@ class PaginationServiсe {
 
     if (rightItemsLength > 4 && !isMobile) {
       markup.push(this.getBtnPaginationHtml('...', false, 'rigth'));
-      markup.push(this.getBtnPaginationHtml(this.#totalPage));
+      markup.push(this.getBtnPaginationHtml(maxPage));
     }
 
     refs.paginationList.innerHTML = markup.join('');
@@ -146,6 +212,7 @@ class PaginationServiсe {
   }
 
   changePage(page) {
+    if (page <= 0) return;
     if (page === 1) {
       refs.prevBtnPAgination.disabled = true;
     } else if (refs.prevBtnPAgination.disabled) {
@@ -159,6 +226,12 @@ class PaginationServiсe {
     }
 
     this.#page = page;
+  }
+
+  resetData() {
+    this.perPage = 20;
+    this.#page = 1;
+    this.totalPage = null;
   }
 
   set page(pageMovie = 1) {
