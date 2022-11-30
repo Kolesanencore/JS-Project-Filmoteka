@@ -15,25 +15,19 @@ pageLabraryRef.addEventListener('click', () => {
   headerRef.classList.add('header__library');
   pageHomeRef.classList.remove('current');
   pageLabraryRef.classList.add('current1');
-  inputeHidden.classList.add('search_none')
-  buttonHidden.classList.remove('button_hidden')
-  
-})
+  inputeHidden.classList.add('search_none');
+  buttonHidden.classList.remove('button_hidden');
+});
 
-pageHomeRef.addEventListener('click', () => {
-   headerRef.classList.remove('header__library');
+const onChangeCurrentHomePage = () => {
+  headerRef.classList.remove('header__library');
   headerRef.classList.add('header');
   pageHomeRef.classList.add('current');
   pageLabraryRef.classList.remove('current1');
-  inputeHidden.classList.remove('search_none')
-  buttonHidden.classList.add('button_hidden')
+  inputeHidden.classList.remove('search_none');
+  buttonHidden.classList.add('button_hidden');
+};
 
-})
+pageHomeRef.addEventListener('click', onChangeCurrentHomePage);
 
-
-
-
-
-
-
-
+export { onChangeCurrentHomePage };
