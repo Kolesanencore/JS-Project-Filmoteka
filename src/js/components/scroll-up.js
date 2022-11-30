@@ -14,4 +14,7 @@ function up() {
   return false;
 }
 
-refs.scrolUp.addEventListener('click', up);
+refs.scrolUp.addEventListener('click', e => {
+  e.preventDefault();
+  up();
+});
