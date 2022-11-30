@@ -5,6 +5,7 @@
 
 .list-item {
   transition: transform 250ms ease-in-out,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   // &:hover,
@@ -18,7 +19,8 @@
 
   &:hover,
   &:focus {
-    transform: scale3d(1.05, 1.05, 1.05);
+    border-radius: 5px 5px 5px 5px;
+    transform: scale3d(0.95, 0.95, 0.95);
     box-shadow: 0 0 20px 5px rgba(255, 107, 1, 0.251),
       0 0 15px 3px rgb(255, 107, 1);
   }
@@ -41,7 +43,7 @@
 
 .list-item__description {
   display: flex;
-  color: var(--accent-color-text);
+  color: var(--accent-colo-text);
   font-family: Roboto, sans-serif;
   font-style: Medium;
   font-weight: 500;
