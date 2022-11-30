@@ -2,7 +2,6 @@ const refs = {
   searchForm: document.querySelector('#search-form'),
   gallery: document.querySelector('.gallery-list'),
 
-
   footerModal: document.querySelector('.footer-modal'),
   openModalLink: document.querySelector('[data-footer-open]'),
   modal: document.querySelector('[data-modal-footer]'),
@@ -17,5 +16,10 @@ const refs = {
   nextBtnPAgination: document.querySelector('[data-page="next"]'),
   sectionMovies: document.querySelector('.movies'),
 
+  homePage: document.querySelector('[data-current="home"]'),
+  myLibraryPage: document.querySelector('[data-current="library"]'),
+  watched: document.querySelector('[data-list="watched"]'),
+  queue: document.querySelector('[data-list="queue"]'),
+  scrolUp: document.querySelector('.scroll-up'),
 };
 export default refs;
