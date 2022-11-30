@@ -14,6 +14,8 @@ import './js/modal_footer';
 import './js/render_footer_modal';
 import './js/slider_glide';
 
+import './js/servises/theme'
+
 
 
 
