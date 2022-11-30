@@ -146,16 +146,15 @@
   justify-content: center;
 }
 
-// .list-item__vote {
-//   background-color: var(--button-color);
-//   border-radius: 5px;
-//   font-size: 12px;
-//   line-height: 1.167;
-//   margin-left: 8px;
-//   color: var(--secondary-text-color);
-//   padding: 1px 10px;
+.list-item__vote {
+  background-color: var(--button-color);
+  border-radius: 5px;
+  font-size: 12px;
+  line-height: 1.167;
+  margin-left: 8px;
+  color: var(--secondary-text-color);
+  padding: 1px 10px;
 
-//   @media screen and (min-width: 1280px) {
-//     padding: 3px 12px;
-//   }
-// }
+  @media screen and (min-width: 1280px) {
+  }
+}
