@@ -1,5 +1,6 @@
 <header class="header">
   <div class="header_block">
+<<<<<<< Updated upstream
   <div class="navigation__container">
     <a href="" class="logo">
       <svg class="logo__svg rotate-vert-center">
@@ -19,6 +20,52 @@
         </li>
       </ul>
     </nav>
+=======
+
+    <div class="navigation__container">
+      <a href="" class="logo">
+        <svg class="logo__svg rotate-vert-center">
+          <use href="./images/sprite.svg#icon-film"></use>
+        </svg>
+        <span class="logo__text">Filmoteka</span>
+      </a>
+      <nav class="navigation">
+        <ul class="menu list">
+          <li class="menu__item">
+            <a
+              href="#"
+              class="link menu__link menu__link-home current"
+              data-current="home"
+              >HOME</a
+            >
+          </li>
+          <li class="menu__item">
+            <a
+              href="#"
+              class="link menu__link menu__link-library"
+              data-current="library"
+              >MY LIBRARY</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+
+    <form id="search-form" action="" class="search">
+      <input
+        class="search__input"
+        name="query"
+        type="text"
+        placeholder="Movie search"
+      />
+      <button class="search__button" type="submit" title="Go!">
+        <svg class="search__button-icon rotate-vert-center">
+          <use href="./images/sprite.svg#icon-search-2"></use>
+        </svg>
+      </button>
+    </form>
+>>>>>>> Stashed changes
   </div>
 
   <form id="search-form" action="" class="search">
@@ -36,10 +83,12 @@
   </form>
 </div>
 
-<div class=" button_hidden">
+<div class="button_hidden">
 <ul class="buttons">
-  <li><button type="button" class="button btn-lib button-active">WATCHED</button></li>
+  <li><button type="button" class="button btn-lib no-active">WATCHED</button></li>
+    <!-- <li><button type="button" class="button btn-lib button-active">WATCHED</button></li> -->
   <li><button type="button" class="button btn-lib no-active">QUEUE</button></li>
+    <!-- <li><button type="button" class="button btn-lib no-active">QUEUE</button></li> -->
 </ul>
 </div>
   <!-- <p class="warning-notification"></p> -->
