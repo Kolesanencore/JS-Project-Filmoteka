@@ -81,6 +81,7 @@ const renderMoviesMarkup = (movies = []) => {
 };
 
 const renderMoviesLibrary = (movies = []) => {
+  removeClassesNoresult();
   refs.gallery.innerHTML = movies.map(movieMarkupLibrary).join('');
 };
 
@@ -91,10 +92,11 @@ const clearGallery = () => {
 </div>
 `;
 };
-export { renderMoviesMarkup, clearGallery };
+export { renderMoviesMarkup, clearGallery, renderMoviesLibrary };
 
 const addClasessNoResult = () => {
   refs.sectionMovies.classList.add('movies--no-result');
+  refs.sectionMovies.classList.remove('movies--no-result-one-page');
   refs.pagination.classList.add('pagination--no-result');
   refs.gallery.classList.add('gallery-list--no-result');
 };
@@ -103,4 +105,5 @@ const removeClassesNoresult = () => {
   refs.sectionMovies.classList.remove('movies--no-result');
   refs.pagination.classList.remove('pagination--no-result');
   refs.gallery.classList.remove('gallery-list--no-result');
+  refs.sectionMovies.classList.remove('movies--no-result-one-page');
 };
