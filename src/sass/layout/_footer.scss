@@ -1,8 +1,6 @@
 .footer {
-  // background-color: #f7f7f7;
+  background-color: #f7f7f7;
   padding: 29px 0;
-
-  box-shadow: 0 2px 8px #ff6b0180, inset 0 1px #ffffff4d, inset 0 10px #fff3, inset 0 10px 20px #ffffff40, inset 0 -15px 30px #ff6b014d;
 }
 
 .footer__wrapper {
@@ -20,7 +18,6 @@
 }
 
 .footer__text {
-  
   @media screen and (min-width: 768px) {
     display: inline-block;
   }
@@ -46,31 +43,4 @@
 .footer__link {
   color: currentColor;
   margin-left: 4px;
-}
-
-
-.students--link {
-  background: -webkit-linear-gradient(left, #33235B, #D62229, #E97639, #792042, #33235B);
- background: linear-gradient(left, #33235B, #D62229, #E97639, #792042, #33235B);
- background-size: 3200px 200px;
-
- color: transparent;
- -webkit-background-clip: text;
- -webkit-animation: animate-logo;
- -webkit-animation-delay: 0;
- -webkit-animation-duration: 7s;
- -webkit-animation-timing-function: linear;
- -webkit-animation-iteration-count: infinite;
- -webkit-animation-fill-mode: forwards;
- transition: font-size 500ms ease-in-out;
- }
-
-
-@-webkit-keyframes animate-logo {
- 0% {
- background-position: 0 3200px;
- }
- 100% {
- background-position: 3200px 0;
- }
 }
