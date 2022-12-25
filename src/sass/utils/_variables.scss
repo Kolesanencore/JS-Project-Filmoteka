@@ -5,9 +5,25 @@
   --button-color: #FF6B01;
   --background-color: #f7f7f7;
   --modal-footer-color: #8C8C8C;
+
+  --body: #fafafa;
+  --text-default: #1d1d1f;
+  --text-secondary: #86868b;
 }
 
 $desktop: 1024px;
 $mobile: 480px;
 $tablet: 768px;
 
+@media (prefers-color-scheme: light) {
+  :root {
+    --body: #fafafa;
+    --text-default: #1d1d1f;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body: #10171b;
+    --text-default: #f5f5f7;
+  }
+}

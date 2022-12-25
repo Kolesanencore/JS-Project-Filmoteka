@@ -27,8 +27,8 @@ const movieMarkup = ({
   const yearMovie = new Date(release_date).getFullYear() || 'No date';
   const genreMovie =
     takeGenresMovie(genre_ids).splice(0, 2)?.join(', ') || 'No genre';
-  return `<li class="list-item" data-id="${id}">
-      <div class="image-wrapper">
+  return `<li class="list-item btn-lib" data-id="${id}">
+      <div class="image-wrapper ">
        <img
           src="${img}"
           alt="exemple"
@@ -36,13 +36,12 @@ const movieMarkup = ({
         />
       </div> 
       <div class="descr-wrapper">
-       <h2 class="list-item__title">${title.toUpperCase()}</h2>
-      <div class="list-item__description">
-      <p class="list-item__genre">${genreMovie}</p>
-      <span class="list-item__span">&#124</span>
-      <time>${yearMovie}</time>
-      </div>
-       
+        <h2 class="list-item__title">${title.toUpperCase()}</h2>
+        <div class="list-item__description">
+          <p class="list-item__genre">${genreMovie}</p>
+          <span class="list-item__span">&#124</span>
+          <time>${yearMovie}</time>
+        </div>       
       </div>
     </li>`;
 };
@@ -56,7 +55,7 @@ const movieMarkupLibrary = ({
   releaseDate,
 } = {}) => {
   return `<li class="list-item" data-id="${id}">
-      <div class="image-wrapper">
+      <div class="image-wrapper btn-lib">
        <img
           src="${poster}"
           alt="exemple"
