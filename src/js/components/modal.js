@@ -106,14 +106,14 @@ const renderMarkup = object => {
         <li class="modal-content__item">
         <p class="film-details">Vote / Votes</p>
         <p class="film-details__info--number"> 
-        <sp class="film-details__rating--orange">${vote_average.toFixed(1)}</sp>
+        <sp class="film-details__rating--orange">${vote_average}</sp>
         <sp class="film-details__rating"> / </sp>
-        <sp>${vote_count.toFixed(0)}</sp>
+        <sp>${vote_count}</sp>
       </p>
       </li>
       <li class="modal-content__item">
       <p class="film-details">Popularity</p>
-      <p class="film-details__info--number">${popularity.toFixed(0)}</p>
+      <p class="film-details__info--number">${popularity}</p>
           </li>
           <li class="modal-content__item">
           <p class="film-details">Original Title</p>

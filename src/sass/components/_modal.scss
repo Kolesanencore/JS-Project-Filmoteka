@@ -34,11 +34,6 @@
 .modal-content__sides {
   overflow-x: auto;
 
-    border-radius: 10px;
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-    transform: scale(1);
-    box-shadow: rgba(255, 255, 255, 0.5) 2px 2px 2px inset, rgba(0, 0, 0, 0.1) -7px -7px 10px inset, rgba(0, 0, 0, 0.1) 7px 7px 20px, rgba(0, 0, 0, 0.1) 4px 4px 5px;
-
   margin: auto;
   background-color: #ffffff;
   font-family: Roboto, sans-serif;
