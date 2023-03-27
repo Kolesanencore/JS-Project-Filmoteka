@@ -3,6 +3,7 @@
   margin: 0 auto;
   max-width: 100%;
   padding: 40px 20px;
+  // height: 216px;
   color: white;
   background-color: #2a2a2a;
   background-image: url('../images/mobile/Group\ 862@-min.png');
@@ -40,7 +41,6 @@ ul {
   display: flex;
   margin-bottom: 41px;
   align-items: center;
-  justify-content: space-between;
 }
 
 .header_block {
@@ -67,9 +67,9 @@ ul {
   }
 }
 
-// .navigation {
-//   margin-left: auto;
-// }
+.navigation {
+  margin-left: auto;
+}
 
 .logo {
   text-decoration: none;
@@ -252,6 +252,3 @@ ul {
 .button_hidden {
   display: none;
 }
-
-// lang
-
