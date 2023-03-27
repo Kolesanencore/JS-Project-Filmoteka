@@ -8,9 +8,9 @@
   border: 5px solid #10171b;
   border-radius: 40px;
   cursor: pointer;
-  // box-shadow: 9px 9px 16px rgba(189, 189, 189, 0.6),
-  //   -9px -9px 16px rgba(255, 255, 255, 0.5), inset 10px 10px 15px -10px #c3c3c3,
-  //   inset -10px -10px 15px -10px #fff;
+  box-shadow: 9px 9px 16px rgba(189, 189, 189, 0.6),
+    -9px -9px 16px rgba(255, 255, 255, 0.5), inset 10px 10px 15px -10px #c3c3c3,
+    inset -10px -10px 15px -10px #fff;
 
   @media (prefers-color-scheme: light) {
      box-shadow: -8px -4px 8px 0px rgba(255, 255, 255, 0.05),
@@ -113,14 +113,14 @@
 }
 
 .toolbar {
-  display: flex;
-  align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .theme-switch {
     display: flex;
     z-index: 0;
-    // position: absolute;
+    position: absolute;
 
     // margin-top: 20px;
 }
@@ -129,8 +129,8 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    // position: relative;
-    width: 80px;
+    position: relative;
+    width: 60px;
     height: 20px;
     border-radius: 50em;
     padding: 3px 0;
