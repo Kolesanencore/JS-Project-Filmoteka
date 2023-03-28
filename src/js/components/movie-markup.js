@@ -20,13 +20,14 @@ const movieMarkup = ({
   release_date,
   genre_ids,
   poster_path,
+  vote_average,
+  average,
 } = {}) => {
   const img = poster_path
     ? `${BASE_URL_IMG + FILE_SIZE + poster_path}`
     : DefaultImg;
   const yearMovie = new Date(release_date).getFullYear() || 'No date';
-  const genreMovie =
-    takeGenresMovie(genre_ids).splice(0, 2)?.join(', ') || 'No genre';
+  const genreMovie = takeGenresMovie(genre_ids).splice(0, 2)?.join(', ') || 'No genre';
   return `<li class="list-item btn-lib" data-id="${id}">
       <div class="image-wrapper ">
        <img
@@ -40,7 +41,9 @@ const movieMarkup = ({
         <div class="list-item__description">
           <p class="list-item__genre">${genreMovie}</p>
           <span class="list-item__span">&#124</span>
-          <time>${yearMovie}</time>
+          <time class="list-item__time">${yearMovie} </time>  
+          
+          <sp class="film-details__rating--orange">${vote_average.toFixed(1)}</sp>       
         </div>       
       </div>
     </li>`;
@@ -65,10 +68,10 @@ const movieMarkupLibrary = ({
       <div class="descr-wrapper">
         <h2 class="list-item__title">${title.toUpperCase()}</h2>
         <div class="list-item__description">
-          <p class="list-item__genre">${genres}</p>
+          <p class="list-item__genre">${genres}</p> 
           <span class="list-item__span">&#124</span>
           <time>${releaseDate}</time>
-          <span class="list-item__vote">${average.toFixed(1)}</span>
+          <span class="list-item__vote">${average.toFixed(1)}</span>         
         </div>
       </div>
     </li>`;

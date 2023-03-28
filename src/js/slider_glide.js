@@ -3,7 +3,7 @@ import Glide from '@glidejs/glide';
 export const config = {
   type: 'carousel',
   perView: 8,
-  // autoplay: 1500,
+  autoplay: 1500,
   gap: 10,
   touchRatio: 0.1,
   keyboard: true,
@@ -35,7 +35,7 @@ export const options = {
   type: 'carousel',
   startAt: 0,
   perView: 1,
-  // autoplay: 4000,
+  autoplay: 3000,
   keyboard: true,
 };
 
